@@ -2,9 +2,10 @@ cmake_minimum_required(VERSION 3.5)
 
 project(spirv-reflect)
 
-OPTION(SPIRV_REFLECT_EXECUTABLE     "Build spirv-reflect executable" ON)
+OPTION(SPIRV_REFLECT_EXECUTABLE     "Build spirv-reflect executable" OFF)
 
 OPTION(SPIRV_REFLECT_STATIC_LIB     "Build a SPIRV-Reflect static library" OFF)
+OPTION(SPIRV_REFLECT_SHARED_LIB     "Build a SPIRV-Reflect shared library" ON)
 OPTION(SPIRV_REFLECT_BUILD_TESTS    "Build the SPIRV-Reflect test suite" OFF)
 OPTION(SPIRV_REFLECT_ENABLE_ASSERTS "Enable asserts for debugging" OFF)
 OPTION(SPIRV_REFLECT_ENABLE_ASAN    "Use address sanitization" OFF)
@@ -118,3 +119,15 @@ if(SPIRV_REFLECT_STATIC_LIB)
             ARCHIVE DESTINATION lib)
 endif()
 
+if(SPIRV_REFLECT_SHARED_LIB)
+    add_library(spirv-reflect-c-shared SHARED
+    ${CMAKE_CURRENT_SOURCE_DIR}/spirv_reflect.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/spirv_reflect.c
+                                     )
+
+    target_include_directories(spirv-reflect-c-shared
+                               PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+    install(TARGETS spirv-reflect-c-shared
+            LIBRARY DESTINATION lib
+            ARCHIVE DESTINATION lib)
+endif()
