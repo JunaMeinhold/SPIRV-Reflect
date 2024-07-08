@@ -36,7 +36,7 @@ VERSION HISTORY
     #define SPIRV_REFLECT_API __declspec(dllexport)
 #else
     #ifdef __GNUC__
-        #define SPIRV_REFLECT_API  __attribute__((__visibility__("default")))
+        #define SPIRV_REFLECT_API  __attribute__((visibility("default")))
     #else
         #define SPIRV_REFLECT_API
     #endif
