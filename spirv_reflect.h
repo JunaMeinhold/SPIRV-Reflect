@@ -36,7 +36,7 @@ VERSION HISTORY
     #define SPIRV_REFLECT_API __declspec(dllexport)
 #else
     #ifdef __GNUC__
-        #define SPIRV_REFLECT_API  __attribute__((visibility("default")))
+        #define SPIRV_REFLECT_API __attribute__((visibility("default")))
     #else
         #define SPIRV_REFLECT_API
     #endif
@@ -51,6 +51,8 @@ VERSION HISTORY
 
 #include <stdint.h>
 #include <string.h>
+
+
 
 #ifdef _MSC_VER
   #define SPV_REFLECT_DEPRECATED(msg_str) __declspec(deprecated("This symbol is deprecated. Details: " msg_str))
@@ -644,7 +646,7 @@ extern "C" {
  @return           SPV_REFLECT_RESULT_SUCCESS on success.
 
 */
-SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectCreateShaderModule(
+SPIRV_REFLECT_API SpvReflectResult spvReflectCreateShaderModule(
   size_t                   size,
   const void*              p_code,
   SpvReflectShaderModule*  p_module
@@ -659,7 +661,7 @@ SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectCreateShaderModu
  @return           SPV_REFLECT_RESULT_SUCCESS on success.
 
 */
-SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectCreateShaderModule2(
+SPIRV_REFLECT_API SpvReflectResult spvReflectCreateShaderModule2(
   SpvReflectModuleFlags    flags,
   size_t                   size,
   const void*              p_code,
@@ -667,7 +669,7 @@ SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectCreateShaderModu
 );
 
 SPV_REFLECT_DEPRECATED("renamed to spvReflectCreateShaderModule")
-SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectGetShaderModule(
+SPIRV_REFLECT_API SpvReflectResult spvReflectGetShaderModule(
   size_t                   size,
   const void*              p_code,
   SpvReflectShaderModule*  p_module
@@ -679,7 +681,7 @@ SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectGetShaderModule(
  @param  p_module  Pointer to an instance of SpvReflectShaderModule.
 
 */
-SPIRV_REFLECT_API void SPIRV_REFLECT_POST spvReflectDestroyShaderModule(SpvReflectShaderModule* p_module);
+SPIRV_REFLECT_API void spvReflectDestroyShaderModule(SpvReflectShaderModule* p_module);
 
 
 /*! @fn spvReflectGetCodeSize
@@ -688,7 +690,7 @@ SPIRV_REFLECT_API void SPIRV_REFLECT_POST spvReflectDestroyShaderModule(SpvRefle
  @return           Returns the size of the SPIR-V in bytes
 
 */
-SPIRV_REFLECT_API uint32_t SPIRV_REFLECT_POST spvReflectGetCodeSize(const SpvReflectShaderModule* p_module);
+SPIRV_REFLECT_API uint32_t spvReflectGetCodeSize(const SpvReflectShaderModule* p_module);
 
 
 /*! @fn spvReflectGetCode
@@ -697,7 +699,7 @@ SPIRV_REFLECT_API uint32_t SPIRV_REFLECT_POST spvReflectGetCodeSize(const SpvRef
  @return           Returns a const pointer to the compiled SPIR-V bytecode.
 
 */
-SPIRV_REFLECT_API const uint32_t* SPIRV_REFLECT_POST spvReflectGetCode(const SpvReflectShaderModule* p_module);
+SPIRV_REFLECT_API const uint32_t* spvReflectGetCode(const SpvReflectShaderModule* p_module);
 
 /*! @fn spvReflectGetEntryPoint
 
@@ -706,7 +708,7 @@ SPIRV_REFLECT_API const uint32_t* SPIRV_REFLECT_POST spvReflectGetCode(const Spv
  @return              Returns a const pointer to the requested entry point,
                       or NULL if it's not found.
 */
-SPIRV_REFLECT_API const SpvReflectEntryPoint* SPIRV_REFLECT_POST spvReflectGetEntryPoint(
+SPIRV_REFLECT_API const SpvReflectEntryPoint* spvReflectGetEntryPoint(
   const SpvReflectShaderModule* p_module,
   const char*                   entry_point
 );
@@ -729,7 +731,7 @@ SPIRV_REFLECT_API const SpvReflectEntryPoint* SPIRV_REFLECT_POST spvReflectGetEn
                       failure.
 
 */
-SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectEnumerateDescriptorBindings(
+SPIRV_REFLECT_API SpvReflectResult spvReflectEnumerateDescriptorBindings(
   const SpvReflectShaderModule*  p_module,
   uint32_t*                      p_count,
   SpvReflectDescriptorBinding**  pp_bindings
@@ -755,7 +757,7 @@ SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectEnumerateDescrip
                       failure.
 
 */
-SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectEnumerateEntryPointDescriptorBindings(
+SPIRV_REFLECT_API SpvReflectResult spvReflectEnumerateEntryPointDescriptorBindings(
   const SpvReflectShaderModule* p_module,
   const char*                   entry_point,
   uint32_t*                     p_count,
@@ -780,7 +782,7 @@ SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectEnumerateEntryPo
                    failure.
 
 */
-SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectEnumerateDescriptorSets(
+SPIRV_REFLECT_API SpvReflectResult spvReflectEnumerateDescriptorSets(
   const SpvReflectShaderModule* p_module,
   uint32_t*                     p_count,
   SpvReflectDescriptorSet**     pp_sets
@@ -806,7 +808,7 @@ SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectEnumerateDescrip
                      failure.
 
 */
-SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectEnumerateEntryPointDescriptorSets(
+SPIRV_REFLECT_API SpvReflectResult spvReflectEnumerateEntryPointDescriptorSets(
   const SpvReflectShaderModule* p_module,
   const char*                   entry_point,
   uint32_t*                     p_count,
@@ -833,7 +835,7 @@ SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectEnumerateEntryPo
                        failure.
 
 */
-SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectEnumerateInterfaceVariables(
+SPIRV_REFLECT_API SpvReflectResult spvReflectEnumerateInterfaceVariables(
   const SpvReflectShaderModule* p_module,
   uint32_t*                     p_count,
   SpvReflectInterfaceVariable** pp_variables
@@ -858,7 +860,7 @@ SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectEnumerateInterfa
                        failure.
 
 */
-SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectEnumerateEntryPointInterfaceVariables(
+SPIRV_REFLECT_API SpvReflectResult spvReflectEnumerateEntryPointInterfaceVariables(
   const SpvReflectShaderModule* p_module,
   const char*                   entry_point,
   uint32_t*                     p_count,
@@ -885,7 +887,7 @@ SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectEnumerateEntryPo
                        failure.
 
 */
-SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectEnumerateInputVariables(
+SPIRV_REFLECT_API SpvReflectResult spvReflectEnumerateInputVariables(
   const SpvReflectShaderModule* p_module,
   uint32_t*                     p_count,
   SpvReflectInterfaceVariable** pp_variables
@@ -910,7 +912,7 @@ SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectEnumerateInputVa
                        failure.
 
 */
-SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectEnumerateEntryPointInputVariables(
+SPIRV_REFLECT_API SpvReflectResult spvReflectEnumerateEntryPointInputVariables(
   const SpvReflectShaderModule* p_module,
   const char*                   entry_point,
   uint32_t*                     p_count,
@@ -937,7 +939,7 @@ SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectEnumerateEntryPo
                        failure.
 
 */
-SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectEnumerateOutputVariables(
+SPIRV_REFLECT_API SpvReflectResult spvReflectEnumerateOutputVariables(
   const SpvReflectShaderModule* p_module,
   uint32_t*                     p_count,
   SpvReflectInterfaceVariable** pp_variables
@@ -962,7 +964,7 @@ SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectEnumerateOutputV
                        failure.
 
 */
-SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectEnumerateEntryPointOutputVariables(
+SPIRV_REFLECT_API SpvReflectResult spvReflectEnumerateEntryPointOutputVariables(
   const SpvReflectShaderModule* p_module,
   const char*                   entry_point,
   uint32_t*                     p_count,
@@ -990,13 +992,13 @@ SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectEnumerateEntryPo
                     failure.
 
 */
-SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectEnumeratePushConstantBlocks(
+SPIRV_REFLECT_API SpvReflectResult spvReflectEnumeratePushConstantBlocks(
   const SpvReflectShaderModule* p_module,
   uint32_t*                     p_count,
   SpvReflectBlockVariable**     pp_blocks
 );
 SPV_REFLECT_DEPRECATED("renamed to spvReflectEnumeratePushConstantBlocks")
-SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectEnumeratePushConstants(
+SPIRV_REFLECT_API SpvReflectResult spvReflectEnumeratePushConstants(
   const SpvReflectShaderModule* p_module,
   uint32_t*                     p_count,
   SpvReflectBlockVariable**     pp_blocks
@@ -1022,7 +1024,7 @@ SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectEnumeratePushCon
                     failure.
 
 */
-SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectEnumerateEntryPointPushConstantBlocks(
+SPIRV_REFLECT_API SpvReflectResult spvReflectEnumerateEntryPointPushConstantBlocks(
   const SpvReflectShaderModule* p_module,
   const char*                   entry_point,
   uint32_t*                     p_count,
@@ -1043,7 +1045,7 @@ SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectEnumerateEntryPo
  @return               If successful, returns SPV_REFLECT_RESULT_SUCCESS.
                        Otherwise, the error code indicates the cause of the failure.
 */
-SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectEnumerateSpecializationConstants(
+SPIRV_REFLECT_API SpvReflectResult spvReflectEnumerateSpecializationConstants(
   const SpvReflectShaderModule*      p_module,
   uint32_t*                          p_count,
   SpvReflectSpecializationConstant** pp_constants
@@ -1071,7 +1073,7 @@ SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectEnumerateSpecial
                          no guarantees about which binding will be returned.
 
 */
-SPIRV_REFLECT_API const SpvReflectDescriptorBinding* SPIRV_REFLECT_POST spvReflectGetDescriptorBinding(
+SPIRV_REFLECT_API const SpvReflectDescriptorBinding* spvReflectGetDescriptorBinding(
   const SpvReflectShaderModule* p_module,
   uint32_t                      binding_number,
   uint32_t                      set_number,
@@ -1103,7 +1105,7 @@ SPIRV_REFLECT_API const SpvReflectDescriptorBinding* SPIRV_REFLECT_POST spvRefle
                          no guarantees about which binding will be returned.
 
 */
-SPIRV_REFLECT_API const SpvReflectDescriptorBinding* SPIRV_REFLECT_POST spvReflectGetEntryPointDescriptorBinding(
+SPIRV_REFLECT_API const SpvReflectDescriptorBinding* spvReflectGetEntryPointDescriptorBinding(
   const SpvReflectShaderModule* p_module,
   const char*                   entry_point,
   uint32_t                      binding_number,
@@ -1128,7 +1130,7 @@ SPIRV_REFLECT_API const SpvReflectDescriptorBinding* SPIRV_REFLECT_POST spvRefle
                      error results are written to *pResult.
 
 */
-SPIRV_REFLECT_API const SpvReflectDescriptorSet* SPIRV_REFLECT_POST spvReflectGetDescriptorSet(
+SPIRV_REFLECT_API const SpvReflectDescriptorSet* spvReflectGetDescriptorSet(
   const SpvReflectShaderModule* p_module,
   uint32_t                      set_number,
   SpvReflectResult*             p_result
@@ -1151,7 +1153,7 @@ SPIRV_REFLECT_API const SpvReflectDescriptorSet* SPIRV_REFLECT_POST spvReflectGe
                      error results are written to *pResult.
 
 */
-SPIRV_REFLECT_API const SpvReflectDescriptorSet* SPIRV_REFLECT_POST spvReflectGetEntryPointDescriptorSet(
+SPIRV_REFLECT_API const SpvReflectDescriptorSet* spvReflectGetEntryPointDescriptorSet(
   const SpvReflectShaderModule* p_module,
   const char*                   entry_point,
   uint32_t                      set_number,
@@ -1179,13 +1181,13 @@ SPIRV_REFLECT_API const SpvReflectDescriptorSet* SPIRV_REFLECT_POST spvReflectGe
 @note
 
 */
-SPIRV_REFLECT_API const SpvReflectInterfaceVariable* SPIRV_REFLECT_POST spvReflectGetInputVariableByLocation(
+SPIRV_REFLECT_API const SpvReflectInterfaceVariable* spvReflectGetInputVariableByLocation(
   const SpvReflectShaderModule* p_module,
   uint32_t                      location,
   SpvReflectResult*             p_result
 );
 SPV_REFLECT_DEPRECATED("renamed to spvReflectGetInputVariableByLocation")
-SPIRV_REFLECT_API const SpvReflectInterfaceVariable* SPIRV_REFLECT_POST spvReflectGetInputVariable(
+SPIRV_REFLECT_API const SpvReflectInterfaceVariable* spvReflectGetInputVariable(
   const SpvReflectShaderModule* p_module,
   uint32_t                      location,
   SpvReflectResult*             p_result
@@ -1212,7 +1214,7 @@ SPIRV_REFLECT_API const SpvReflectInterfaceVariable* SPIRV_REFLECT_POST spvRefle
 @note
 
 */
-SPIRV_REFLECT_API const SpvReflectInterfaceVariable* SPIRV_REFLECT_POST spvReflectGetEntryPointInputVariableByLocation(
+SPIRV_REFLECT_API const SpvReflectInterfaceVariable* spvReflectGetEntryPointInputVariableByLocation(
   const SpvReflectShaderModule* p_module,
   const char*                   entry_point,
   uint32_t                      location,
@@ -1240,7 +1242,7 @@ SPIRV_REFLECT_API const SpvReflectInterfaceVariable* SPIRV_REFLECT_POST spvRefle
 @note
 
 */
-SPIRV_REFLECT_API const SpvReflectInterfaceVariable* SPIRV_REFLECT_POST spvReflectGetInputVariableBySemantic(
+SPIRV_REFLECT_API const SpvReflectInterfaceVariable* spvReflectGetInputVariableBySemantic(
   const SpvReflectShaderModule* p_module,
   const char*                   semantic,
   SpvReflectResult*             p_result
@@ -1268,7 +1270,7 @@ SPIRV_REFLECT_API const SpvReflectInterfaceVariable* SPIRV_REFLECT_POST spvRefle
 @note
 
 */
-SPIRV_REFLECT_API const SpvReflectInterfaceVariable* SPIRV_REFLECT_POST spvReflectGetEntryPointInputVariableBySemantic(
+SPIRV_REFLECT_API const SpvReflectInterfaceVariable* spvReflectGetEntryPointInputVariableBySemantic(
   const SpvReflectShaderModule* p_module,
   const char*                   entry_point,
   const char*                   semantic,
@@ -1295,13 +1297,13 @@ SPIRV_REFLECT_API const SpvReflectInterfaceVariable* SPIRV_REFLECT_POST spvRefle
 @note
 
 */
-SPIRV_REFLECT_API const SpvReflectInterfaceVariable* SPIRV_REFLECT_POST spvReflectGetOutputVariableByLocation(
+SPIRV_REFLECT_API const SpvReflectInterfaceVariable* spvReflectGetOutputVariableByLocation(
   const SpvReflectShaderModule*  p_module,
   uint32_t                       location,
   SpvReflectResult*              p_result
 );
 SPV_REFLECT_DEPRECATED("renamed to spvReflectGetOutputVariableByLocation")
-SPIRV_REFLECT_API const SpvReflectInterfaceVariable* SPIRV_REFLECT_POST spvReflectGetOutputVariable(
+SPIRV_REFLECT_API const SpvReflectInterfaceVariable* spvReflectGetOutputVariable(
   const SpvReflectShaderModule*  p_module,
   uint32_t                       location,
   SpvReflectResult*              p_result
@@ -1328,7 +1330,7 @@ SPIRV_REFLECT_API const SpvReflectInterfaceVariable* SPIRV_REFLECT_POST spvRefle
 @note
 
 */
-SPIRV_REFLECT_API const SpvReflectInterfaceVariable* SPIRV_REFLECT_POST spvReflectGetEntryPointOutputVariableByLocation(
+SPIRV_REFLECT_API const SpvReflectInterfaceVariable* spvReflectGetEntryPointOutputVariableByLocation(
   const SpvReflectShaderModule*  p_module,
   const char*                    entry_point,
   uint32_t                       location,
@@ -1356,7 +1358,7 @@ SPIRV_REFLECT_API const SpvReflectInterfaceVariable* SPIRV_REFLECT_POST spvRefle
 @note
 
 */
-SPIRV_REFLECT_API const SpvReflectInterfaceVariable* SPIRV_REFLECT_POST spvReflectGetOutputVariableBySemantic(
+SPIRV_REFLECT_API const SpvReflectInterfaceVariable* spvReflectGetOutputVariableBySemantic(
   const SpvReflectShaderModule*  p_module,
   const char*                    semantic,
   SpvReflectResult*              p_result
@@ -1384,7 +1386,7 @@ SPIRV_REFLECT_API const SpvReflectInterfaceVariable* SPIRV_REFLECT_POST spvRefle
 @note
 
 */
-SPIRV_REFLECT_API const SpvReflectInterfaceVariable* SPIRV_REFLECT_POST spvReflectGetEntryPointOutputVariableBySemantic(
+SPIRV_REFLECT_API const SpvReflectInterfaceVariable* spvReflectGetEntryPointOutputVariableBySemantic(
   const SpvReflectShaderModule*  p_module,
   const char*                    entry_point,
   const char*                    semantic,
@@ -1408,13 +1410,13 @@ SPIRV_REFLECT_API const SpvReflectInterfaceVariable* SPIRV_REFLECT_POST spvRefle
                    error results are written to *pResult.
 
 */
-SPIRV_REFLECT_API const SpvReflectBlockVariable* SPIRV_REFLECT_POST spvReflectGetPushConstantBlock(
+SPIRV_REFLECT_API const SpvReflectBlockVariable* spvReflectGetPushConstantBlock(
   const SpvReflectShaderModule*  p_module,
   uint32_t                       index,
   SpvReflectResult*              p_result
 );
 SPV_REFLECT_DEPRECATED("renamed to spvReflectGetPushConstantBlock")
-SPIRV_REFLECT_API const SpvReflectBlockVariable* SPIRV_REFLECT_POST spvReflectGetPushConstant(
+SPIRV_REFLECT_API const SpvReflectBlockVariable* spvReflectGetPushConstant(
   const SpvReflectShaderModule*  p_module,
   uint32_t                       index,
   SpvReflectResult*              p_result
@@ -1439,7 +1441,7 @@ SPIRV_REFLECT_API const SpvReflectBlockVariable* SPIRV_REFLECT_POST spvReflectGe
                       error results are written to *pResult.
 
 */
-SPIRV_REFLECT_API const SpvReflectBlockVariable* SPIRV_REFLECT_POST spvReflectGetEntryPointPushConstantBlock(
+SPIRV_REFLECT_API const SpvReflectBlockVariable* spvReflectGetEntryPointPushConstantBlock(
   const SpvReflectShaderModule*  p_module,
   const char*                    entry_point,
   SpvReflectResult*              p_result
@@ -1469,14 +1471,14 @@ SPIRV_REFLECT_API const SpvReflectBlockVariable* SPIRV_REFLECT_POST spvReflectGe
                              Otherwise, the error code indicates the cause of
                              the failure.
 */
-SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectChangeDescriptorBindingNumbers(
+SPIRV_REFLECT_API SpvReflectResult spvReflectChangeDescriptorBindingNumbers(
   SpvReflectShaderModule*            p_module,
   const SpvReflectDescriptorBinding* p_binding,
   uint32_t                           new_binding_number,
   uint32_t                           new_set_number
 );
 SPV_REFLECT_DEPRECATED("Renamed to spvReflectChangeDescriptorBindingNumbers")
-SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectChangeDescriptorBindingNumber(
+SPIRV_REFLECT_API SpvReflectResult spvReflectChangeDescriptorBindingNumber(
   SpvReflectShaderModule*            p_module,
   const SpvReflectDescriptorBinding* p_descriptor_binding,
   uint32_t                           new_binding_number,
@@ -1505,7 +1507,7 @@ SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectChangeDescriptor
                          Otherwise, the error code indicates the cause of
                          the failure.
 */
-SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectChangeDescriptorSetNumber(
+SPIRV_REFLECT_API SpvReflectResult spvReflectChangeDescriptorSetNumber(
   SpvReflectShaderModule*        p_module,
   const SpvReflectDescriptorSet* p_set,
   uint32_t                       new_set_number
@@ -1528,7 +1530,7 @@ SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectChangeDescriptor
                            the failure.
 
 */
-SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectChangeInputVariableLocation(
+SPIRV_REFLECT_API SpvReflectResult spvReflectChangeInputVariableLocation(
   SpvReflectShaderModule*            p_module,
   const SpvReflectInterfaceVariable* p_input_variable,
   uint32_t                           new_location
@@ -1552,7 +1554,7 @@ SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectChangeInputVaria
                            the failure.
 
 */
-SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectChangeOutputVariableLocation(
+SPIRV_REFLECT_API SpvReflectResult spvReflectChangeOutputVariableLocation(
   SpvReflectShaderModule*             p_module,
   const SpvReflectInterfaceVariable*  p_output_variable,
   uint32_t                            new_location
@@ -1565,7 +1567,7 @@ SPIRV_REFLECT_API SpvReflectResult SPIRV_REFLECT_POST spvReflectChangeOutputVari
  @return Returns string of source language specified in \a source_lang.
          The caller must not free the memory associated with this string.
 */
-SPIRV_REFLECT_API const char* SPIRV_REFLECT_POST spvReflectSourceLanguage(SpvSourceLanguage source_lang);
+SPIRV_REFLECT_API const char* spvReflectSourceLanguage(SpvSourceLanguage source_lang);
 
 /*! @fn spvReflectBlockVariableTypeName
 
@@ -1573,7 +1575,7 @@ SPIRV_REFLECT_API const char* SPIRV_REFLECT_POST spvReflectSourceLanguage(SpvSou
  @return Returns string of block variable's type description type name
          or NULL if p_var is NULL.
 */
-SPIRV_REFLECT_API const char* SPIRV_REFLECT_POST spvReflectBlockVariableTypeName(
+SPIRV_REFLECT_API const char* spvReflectBlockVariableTypeName(
   const SpvReflectBlockVariable* p_var
 );
 
