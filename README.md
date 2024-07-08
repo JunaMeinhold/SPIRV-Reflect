@@ -1,3 +1,7 @@
+# Fork Information
+
+This fork of SPIRV-Reflect modifies the header file and the build process to generate a DLL, used for wrappers to access SPIRV-Reflect.
+
 # SPIRV-Reflect
 
 SPIRV-Reflect is a lightweight library that provides a C/C++ reflection API for
@@ -8,15 +12,15 @@ SPIRV-Reflect has been tested on Linux and Windows.
 
 ## NEWS
 
-- **2023-07-04** -  We have removed support for
+- **2023-07-04** - We have removed support for
   [Bazel](https://bazel.build).
-- **2023-06-07** -  We are planning to remove support for
-  [Bazel](https://bazel.build/).  If you rely on Bazel for
+- **2023-06-07** - We are planning to remove support for
+  [Bazel](https://bazel.build/). If you rely on Bazel for
   building this code, please let us know in
   https://github.com/KhronosGroup/SPIRV-Reflect/issues/188.
-- **2023-05-03** -  The `master` branch has been renamed to `main` (see
+- **2023-05-03** - The `master` branch has been renamed to `main` (see
   https://github.com/KhronosGroup/SPIRV-Reflect/issues/164 for
-  details).  Please update your fork as per instructions in that
+  details). Please update your fork as per instructions in that
   issue.
 
 ## Features
@@ -67,10 +71,10 @@ To build the included sample applications, use [CMake](https://cmake.org/) to ge
 appropriate project files for your platform, then build them as usual.
 
 Note that you can set VulkanSDK directory as your preference. For example, on Linux:
+
 ```
 VULKAN_SDK=$HOME/VulkanSDK/1.1.70.1/x86_64 cmake -G Ninja  ..
 ```
-
 
 ## Usage
 
