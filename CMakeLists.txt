@@ -26,7 +26,7 @@ install(TARGETS spirv-reflect-c-shared
 if (MSVC)
     # Windows with MSVC: Automatically export all symbols
     set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
-elseif (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+else()
     # Unix-like systems with GCC or Clang: Set visibility to default
     target_compile_options(spirv-reflect-c-shared PRIVATE -fvisibility=default)
 endif()
