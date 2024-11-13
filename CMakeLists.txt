@@ -12,6 +12,10 @@ if (SPIRV_REFLECT_ENABLE_ASAN)
     add_link_options(-fsanitize=address)
 endif()
 
+if (MSVC)
+    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
+endif()
+
 add_library(spirv-reflect-c-shared SHARED
 ${CMAKE_CURRENT_SOURCE_DIR}/SPIRV-Reflect/spirv_reflect.h
 ${CMAKE_CURRENT_SOURCE_DIR}/SPIRV-Reflect/spirv_reflect.c
@@ -23,10 +27,6 @@ install(TARGETS spirv-reflect-c-shared
         LIBRARY DESTINATION lib
         ARCHIVE DESTINATION lib)
 
-if (MSVC)
-    # Windows with MSVC: Automatically export all symbols
-    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
-else()
-    # Unix-like systems with GCC or Clang: Set visibility to default
+if (NOT MSVC)
     target_compile_options(spirv-reflect-c-shared PRIVATE -fvisibility=default)
 endif()
