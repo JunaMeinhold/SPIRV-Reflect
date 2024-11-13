@@ -1,0 +1,3 @@
+[submodule "SPIRV-Reflect"]
+	path = SPIRV-Reflect
+	url = https://github.com/KhronosGroup/SPIRV-Reflect
