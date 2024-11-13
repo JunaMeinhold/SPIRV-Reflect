@@ -84,7 +84,7 @@ jobs:
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4.3.4
       with:
-        name: spirvcross-android-latest-all-artifacts 
+        name: spirvreflect-android-latest-all-artifacts 
         path: |
           spirvreflect/build/arm64-v8a/*.so
           spirvreflect/build/x86_64/*.so
